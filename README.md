@@ -9,4 +9,4 @@ Udemy course link [here](https://www.udemy.com/course/unrealcourse/learn/lecture
 * BT01 Intro, Notes & Assets
 * BT02 Battle Tank Overview
 * BT03 Game Design Document (GDD)
-* BT04 Setting Up a GitHub "Repo"
+* BT04 Setting Up a GitHub "Repo" local/remote
