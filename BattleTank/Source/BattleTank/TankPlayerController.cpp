@@ -6,7 +6,7 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("PlayerConroller Begin Play"));
+	//UE_LOG(LogTemp, Warning, TEXT("PlayerConroller Begin Play"));
 
 	if (!GetControlledTank())
 	{
