@@ -26,4 +26,17 @@ public:
 	//Start the tank moving the barrel so that a shot would hit where the crosshair intersects the world
 	void AimTowardsCrosshair();
 
+private:
+	//Return an OUT parameter, true if hit landscape
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+
+	//Return hit for first physics body in reach
+	//const FHitResult GetFirstPhysicsBodyInReach();
+
+	//Returns current start of reach line
+	//FVector GetReachLineStart();
+
+	//Returns current end of reach line
+	//FVector GetReachLineEnd();
+
 };
