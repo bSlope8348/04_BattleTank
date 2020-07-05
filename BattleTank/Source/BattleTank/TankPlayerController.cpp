@@ -32,26 +32,6 @@ ATank* ATankPlayerController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
-// Get world location of linetrace through crosshair, true if hits landscape
-bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
-{
-	//Get world location of linetrace through crosshair
-	//if hits world use out parameter for hit location
-	
-	//Find the cross hair position in pixel coordinates
-	int32 ViewportSizeX, ViewportSizeY;
-	GetViewportSize(ViewportSizeX, ViewportSizeY);
-	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
-
-	//"De-project" the screen position of the crosshair to a world direction
-	//Line-trace along that look direction, and see what we hit (up to max range)
-	
-	
-	//If hit landscape return true
-	//else return false
-	return true;
-}
-
 void ATankPlayerController::AimTowardsCrosshair()
 {
 	if (!GetControlledTank()) { return; }
@@ -68,4 +48,41 @@ void ATankPlayerController::AimTowardsCrosshair()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Hit Location"));
 	}
+}
+
+// Get world location of linetrace through crosshair, true if hits landscape
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
+{
+	//Get world location of linetrace through crosshair
+	//if hits world use out parameter for hit location
+	
+	//Find the cross hair position in pixel coordinates
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
+	
+	//"De-project" the screen position of the crosshair to a world direction
+	FVector LookDirection;
+	if (GetLookDirection(ScreenLocation, LookDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"), *LookDirection.ToString());
+	}
+
+	//Line-trace along that look direction, and see what we hit (up to max range)
+	
+	
+	//If hit landscape return true
+	//else return false
+	return true;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D OutScreenLocation, FVector& OutLookDirection) const
+{
+	FVector CameraWorldLocation;//To be discarded
+	DeprojectScreenPositionToWorld(
+		OutScreenLocation.X, 
+		OutScreenLocation.Y, 
+		CameraWorldLocation, 
+		OutLookDirection);
+	return true;
 }
