@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Public/Tank.h"
+#include "Engine/World.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" //Must be the last include
@@ -29,13 +30,17 @@ private:
 	//Return an OUT parameter, true if hit landscape
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 
-	bool GetLookDirection(FVector2D OutScreenLocation, FVector& OutLookDirection) const;
+	bool GetLookDirection(FVector2D InScreenLocation, FVector& OutCameraWorldLocation, FVector& OutLookDirection) const;
+
+	bool GetLookVectorHitLocation(FVector& InCameraWorldLocation, FVector& InLookDirection, FVector& OutHitLocation) const;
 
 	// Crosshair location
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.33333;
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 1000000;
 
 	//Return hit for first physics body in reach
 	//const FHitResult GetFirstPhysicsBodyInReach();
