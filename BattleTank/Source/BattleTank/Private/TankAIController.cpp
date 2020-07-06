@@ -27,9 +27,37 @@ void ATankAIController::BeginPlay()
 	}
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (GetPlayerTank())
+	{
+		//TODO move towards the player
+		
+		//Aim towards the player
+		AimTowardsPlayerTank();
+
+		//TODO Fire if ready
+	}
+}
+
+void ATankAIController::AimTowardsPlayerTank()
+{
+	if (!GetAIControlledTank()) { return; }
+
+	if (GetPlayerTank())
+	{
+		GetAIControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No Player Location"));
+	}
+}
+
 ATank* ATankAIController::GetAIControlledTank() const
 {
-
 	return Cast<ATank>(GetPawn());
 }
 

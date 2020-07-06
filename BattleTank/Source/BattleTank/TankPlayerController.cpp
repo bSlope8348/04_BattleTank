@@ -28,7 +28,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
-
 	return Cast<ATank>(GetPawn());
 }
 
@@ -41,7 +40,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation)) //Has "side-effect", is going to line trace
 	{	
-		//UE_LOG(LogTemp, Warning, TEXT("Look Location: %s"), *ScreenLocation.ToString());
+		GetControlledTank()->AimAt(HitLocation);
 	}
 	//if does not hit world
 	else
@@ -53,9 +52,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 // Get world location of linetrace through crosshair, true if hits landscape
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
-	//Get world location of linetrace through crosshair
-	//if hits world use out parameter for hit location
-	
 	//Find the cross hair position in pixel coordinates
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
@@ -67,13 +63,11 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	if (GetLookDirection(ScreenLocation, CameraLocation, LookDirection))
 	{
 		//Line-trace along that look direction, and see what we hit (up to max range)
-		FVector HitLocation;
-		GetLookVectorHitLocation(CameraLocation, LookDirection, HitLocation);
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *HitLocation.ToString());
+		GetLookVectorHitLocation(CameraLocation, LookDirection, OutHitLocation);
 	}
 		
 	//If hit landscape return true
-	//else return false
+	//TODO else return false
 	return true;
 }
 

@@ -39,16 +39,8 @@ private:
 	float CrossHairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.33333;
+	
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000;
-
-	//Return hit for first physics body in reach
-	//const FHitResult GetFirstPhysicsBodyInReach();
-
-	//Returns current start of reach line
-	//FVector GetReachLineStart();
-
-	//Returns current end of reach line
-	//FVector GetReachLineEnd();
 
 };
