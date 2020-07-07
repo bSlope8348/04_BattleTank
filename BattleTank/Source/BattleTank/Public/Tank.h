@@ -2,8 +2,8 @@
 
 #pragma once
 
+#include "CoreMinimal.h" //Possibly top header?
 #include "TankAimingCompontent.h"
-#include "CoreMinimal.h" //Possibly new includes above this too
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h" //Put new includes above this
 
@@ -14,6 +14,9 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	void AimAt(FVector InHitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
 	UTankAimingCompontent* TankAimingComponent = nullptr;
