@@ -23,7 +23,7 @@ public:
 
 	void SetBarrleReference(UStaticMeshComponent* BarrelToSet);
 
-	void AimAt(FVector InHitLocation);	
+	void AimAt(FVector InHitLocation, float InLaunchSpeed);	
 	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

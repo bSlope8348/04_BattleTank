@@ -37,9 +37,8 @@ void UTankAimingCompontent::SetBarrleReference(UStaticMeshComponent* BarrelToSet
 	Barrel = BarrelToSet;
 }
 
-void UTankAimingCompontent::AimAt(FVector InHitLocation)
+void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 {
-	auto OurTankName = GetOwner()->GetName();
-	auto BarrelLocation = Barrel->GetComponentLocation();
-	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"), *OurTankName, *InHitLocation.ToString(), *BarrelLocation.ToString());
+
+	UE_LOG(LogTemp, Warning, TEXT("Firing at %f"), InLaunchSpeed);
 }
