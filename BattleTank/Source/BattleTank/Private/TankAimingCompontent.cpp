@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "TankBarrel.h"
 #include "TankAimingCompontent.h"
 
 // Sets default values for this component's properties
@@ -13,7 +14,7 @@ UTankAimingCompontent::UTankAimingCompontent()
 	// ...
 }
 
-void UTankAimingCompontent::SetBarrleReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingCompontent::SetBarrleReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -42,10 +43,10 @@ void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 		MoveBarrelTowards(AimDirection);
 	}
 	//If no solution do nothing
-	else 
+	/*else 
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No Aim Solution!!!"));
-	}
+	}*/
 }
 
 void UTankAimingCompontent::MoveBarrelTowards(FVector InAimDirection)
@@ -54,12 +55,8 @@ void UTankAimingCompontent::MoveBarrelTowards(FVector InAimDirection)
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = InAimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
-	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
 	
-	//Move the barrel the right amount this frame 
-
-
-	//Given a max elevation speed, and the frame time
-
+	Barrel->Elevate(5); //TODO remove magic number
 
 }
