@@ -2,12 +2,14 @@
 
 #pragma once
 
-#include "Public/Tank.h"
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "TankAIController.generated.h"
+
+//Forward Declatation
+class ATank;
 
 /**
  * 
