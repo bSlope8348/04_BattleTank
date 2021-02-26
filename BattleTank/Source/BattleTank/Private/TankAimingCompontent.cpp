@@ -2,6 +2,7 @@
 
 
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankAimingCompontent.h"
 
 // Sets default values for this component's properties
@@ -14,14 +15,19 @@ UTankAimingCompontent::UTankAimingCompontent()
 	// ...
 }
 
-void UTankAimingCompontent::SetBarrleReference(UTankBarrel* BarrelToSet)
+void UTankAimingCompontent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
 
+void UTankAimingCompontent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	Turret = TurretToSet;
+}
+
 void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 {
-	if (!Barrel) {	return;	}
+	if (!Barrel || !Turret) {	return;	}
 
 	FVector OutLaunchVelocity(0);
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
@@ -41,6 +47,7 @@ void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
+		MoveTurretTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
 		UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found."), Time);
 	}
@@ -61,5 +68,18 @@ void UTankAimingCompontent::MoveBarrelTowards(FVector InAimDirection)
 	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
 	
 	Barrel->Elevate(DeltaRotator.Pitch); //TODO remove magic number
+
+}
+
+
+void UTankAimingCompontent::MoveTurretTowards(FVector InAimDirection)
+{
+	//Work-out difference between current Turret rotation, and AimDirection
+	auto TurretRotator = Turret->GetForwardVector().Rotation();
+	auto AimAsRotator = InAimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - TurretRotator;
+	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
+
+	Turret->Rotate(DeltaRotator.Yaw); //TODO remove magic number
 
 }
