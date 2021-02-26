@@ -67,8 +67,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 		GetLookVectorHitLocation(CameraLocation, LookDirection, OutHitLocation);
 	}
 		
-	//If hit landscape return true
-	//TODO else return false
 	return true;
 }
 
