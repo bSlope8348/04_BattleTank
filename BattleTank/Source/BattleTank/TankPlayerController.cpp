@@ -42,11 +42,13 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (GetSightRayHitLocation(HitLocation)) //Has "side-effect", is going to line trace
 	{	
 		GetControlledTank()->AimAt(HitLocation);
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Located"));
 	}
 	//if does not hit world
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No Hit Location"));
+		{ return; }
+		//UE_LOG(LogTemp, Warning, TEXT("No Hit Location"));
 	}
 }
 

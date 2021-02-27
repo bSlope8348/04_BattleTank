@@ -51,13 +51,13 @@ void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 		MoveBarrelTowards(AimDirection);
 		MoveTurretTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found."), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found."), Time);
 	}
 	//If no solution do nothing
 	else 
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: No Aim Solution!!!"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("%f: No Aim Solution!!!"), Time);
 	}
 }
 
