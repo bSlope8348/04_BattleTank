@@ -6,6 +6,7 @@
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "TankAimingCompontent.h"
+#include "TankMovementComponent.h"
 
 
 // Sets default values
@@ -16,6 +17,7 @@ ATank::ATank()
 
 	//No need to protect points as added at construction 
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingCompontent>(FName("Aiming Component"));
+	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 }
 
 // Called when the game starts or when spawned
