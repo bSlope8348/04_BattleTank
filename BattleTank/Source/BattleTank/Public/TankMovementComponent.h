@@ -21,7 +21,10 @@ public:
 	//Set a throw between -1 and +1
 	UFUNCTION(Blueprintcallable, Category = Input)
 	void IntendMoveForward(float Throw);
-	
+
+	UFUNCTION(Blueprintcallable, Category = Input)
+	void IntendTurnRight(float Throw);
+
 private:
 	UTankTrack* LeftTrack = nullptr;
 	UTankTrack* RightTrack = nullptr;
