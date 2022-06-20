@@ -14,10 +14,10 @@ class BATTLETANK_API UTankTrack : public UStaticMeshComponent
 	
 public:
 	//Set a throttle between -1 and +1
-	UFUNCTION(Blueprintcallable, Category = Input)
+	UFUNCTION(Blueprintcallable, Category = "Input")
 	void SetThrottle(float Throttle);
 
 	//Max force in Newtons
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float TrackMaxDrivingForce = 40000000; //Assume 40 ton tank and 1g acceleration 
 };
