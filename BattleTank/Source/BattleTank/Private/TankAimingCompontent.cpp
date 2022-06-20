@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright EmbraceIT Ltd.
 
 
 #include "TankAimingCompontent.h"
@@ -15,15 +15,9 @@ UTankAimingCompontent::UTankAimingCompontent()
 	// ...
 }
 
-void UTankAimingCompontent::SetBarrelReference(UTankBarrel* BarrelToSet)
+void UTankAimingCompontent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
 {
-	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
-}
-
-void UTankAimingCompontent::SetTurretReference(UTankTurret* TurretToSet)
-{
-	if (!TurretToSet) { return; }
 	Turret = TurretToSet;
 }
 
@@ -63,6 +57,8 @@ void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 
 void UTankAimingCompontent::MoveBarrelTowards(FVector InAimDirection)
 {
+	if (!Barrel || !Turret) { return; }
+
 	//Work-out difference between current barrel rotation, and AimDirection
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = InAimDirection.Rotation();
@@ -76,6 +72,8 @@ void UTankAimingCompontent::MoveBarrelTowards(FVector InAimDirection)
 
 void UTankAimingCompontent::MoveTurretTowards(FVector InAimDirection)
 {
+	if (!Barrel || !Turret) { return; }
+
 	//Work-out difference between current Turret rotation, and AimDirection
 	auto TurretRotator = Turret->GetForwardVector().Rotation();
 	auto AimAsRotator = InAimDirection.Rotation();
