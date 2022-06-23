@@ -18,6 +18,7 @@ ATank::ATank()
 
 void ATank::AimAt(FVector InHitLocation)
 {
+	if (!TankAimingComponent) { return; }
 	TankAimingComponent->AimAt(InHitLocation, LaunchSpeed);
 }
 
