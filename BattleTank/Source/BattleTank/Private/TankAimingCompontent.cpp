@@ -51,7 +51,6 @@ void UTankAimingCompontent::AimAt(FVector InHitLocation, float InLaunchSpeed)
 	else 
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		//UE_LOG(LogTemp, Warning, TEXT("%f: No Aim Solution!!!"), Time);
 	}
 }
 
