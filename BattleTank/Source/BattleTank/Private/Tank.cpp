@@ -23,7 +23,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay(); //Needed for BP BeginPlay to Run!
 	auto TankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("DONKEY!!! BeginPlay PlayerController C++ %f"), *TankName);
+	UE_LOG(LogTemp, Warning, TEXT("DONKEY!!! BeginPlay C++ %f"), *TankName);
 }
 
 void ATank::AimAt(FVector InHitLocation)
