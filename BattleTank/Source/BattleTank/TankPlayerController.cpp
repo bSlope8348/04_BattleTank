@@ -1,7 +1,8 @@
 // Copyright EmbraceIT Ltd.
 
-#include "TankAimingCompontent.h"
+
 #include "TankPlayerController.h"
+#include "TankAimingCompontent.h"
 #include "Public/Tank.h"
 
 void ATankPlayerController::BeginPlay()
