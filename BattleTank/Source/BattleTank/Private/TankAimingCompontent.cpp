@@ -12,7 +12,7 @@ UTankAimingCompontent::UTankAimingCompontent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
 
-	// ...
+	// ... test
 }
 
 void UTankAimingCompontent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
