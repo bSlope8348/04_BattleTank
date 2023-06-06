@@ -1,0 +1,7 @@
+Turret Static Mesh - Turret2
+Barrel Static Mesh - Barrel2
+Track Static Mesh - Track2
+Track Collision - Phys Material Override - Track
+TankAiming - Setup - Projectile_BP
+
+Change as necessary - Projectile_BP - Sphere - Collision - (NoCollision)
